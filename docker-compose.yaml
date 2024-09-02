@@ -1,43 +1,7 @@
 services:
-  nats:
-    image: nats:latest
-    ports:
-      - "8222:8222"
-      - "4222:4222"
-    command: "--name main --jetstream --http_port 8222"
-  
   api:
-    image: ghcr.io/sunangel-project/api:latest
+    image: ghcr.io/cloudsftp/lowkey:latest
     ports:
-      - "6660:6660"
-    depends_on: ["nats"]
-    environment:
-      - NATS_HOST=nats
-      - RUST_LOG=info
-      - FAKE=0
-  
-  spot-finder:
-    image: ghcr.io/sunangel-project/spot-finder:latest
-    depends_on: ["nats", "api"]
-    environment:
-      - NATS_HOST=nats
-      - RUST_LOG=info
-
-  horizon-get:
-    image: ghcr.io/sunangel-project/horizon-get:latest
-    depends_on: ["nats", "spot-finder"]
-    environment:
-      - NATS_HOST=nats
-
-  horizon-compute:
-    image: ghcr.io/sunangel-project/horizon-compute:latest
-    depends_on: ["nats", "horizon-get"]
-    environment:
-      - NATS_HOST=nats
-  
-  sky-service:
-    image: ghcr.io/sunangel-project/sky-service:latest
-    depends_on: ["nats", "horizon-compute"]
-    environment:
-      - NATS_HOST=nats
-      - RUST_LOG=info
+      - "6670:6670"
+    volumes:
+      - .env:.env

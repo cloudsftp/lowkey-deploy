@@ -1,4 +1,4 @@
-# Deploy Sunangel Backend
+# Deploy Lowkey Backend
 
 ## Automate Deployment
 
@@ -21,9 +21,9 @@ docker compose --profile all up -d
 
 To enable SSL, use `nginx` as a reverse proxy.
 
-1. Link `sunangel-api.conf` to `/etc/nginx/conf.d/sunangel-api.conf`
+1. Link `lowkey-api.conf` to `/etc/nginx/conf.d/lowkey-api.conf`
 
-`sudo ln -s $(pwd)/sunangel-api.conf /etc/nginx/conf.d/sunangel-api.conf`
+`sudo ln -s $(pwd)/lowkey-api.conf /etc/nginx/conf.d/lowkey-api.conf`
 
 2. Reload the config with `sudo nginx -t`
 3. Restart `nginx` with `sudo systemctl restart nginx`
@@ -43,13 +43,13 @@ openssl x509 -inform pem -in cloudsftp.de_ssl_certificate.cer -out cert.pem
 Requires `*private_key.key`
 
 ``` sh
-openssl rsa -in cloudsftp.de_private_key.key -text -out key.pem
+openssl rsa -in energiesandsuch.com_private_key.key -text -out key.pem
 ```
 
 Maybe just renaming is enough
 
 ``` sh
-cp cloudsftp.de_private_key.key key.pem
+cp energiesandsuch.com_private_key.key key.pem
 ```
 
 #### install
