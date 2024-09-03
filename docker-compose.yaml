@@ -4,4 +4,4 @@ services:
     ports:
       - "6670:6670"
     volumes:
-      - .env:.env
+      - .env:/.env
