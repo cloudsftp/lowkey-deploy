@@ -28,36 +28,17 @@ To enable SSL, use `nginx` as a reverse proxy.
 2. Reload the config with `sudo nginx -t`
 3. Restart `nginx` with `sudo systemctl restart nginx`
 
-### Convert .cer to .pem
+### Certificates
 
-#### cert.pem
-
-Requires `*certificate.cer`
+#### Obtain
 
 ``` sh
-openssl x509 -inform pem -in cloudsftp.de_ssl_certificate.cer -out cert.pem
+sudo certbot -d '*.energiesandsuch.com' --manual certonly
 ```
 
-#### key.pem
-
-Requires `*private_key.key`
+#### Renew
 
 ``` sh
-openssl rsa -in energiesandsuch.com_private_key.key -text -out key.pem
-```
-
-Maybe just renaming is enough
-
-``` sh
-cp energiesandsuch.com_private_key.key key.pem
-```
-
-#### install
-
-Use `scp` to copy cerificates to the server.
-
-``` sh
-scp cert.pem user@host:~
-scp key.pem user@host:~
+sudo certbot renew
 ```
 
